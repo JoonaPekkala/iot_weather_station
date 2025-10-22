@@ -5,10 +5,10 @@ import time
 import csv
 from datetime import datetime
 
-
-def read_from_serial(port = "COM3", baudrate = 9600, timeout = 2):
+# Read the DHT22 sensor data from ESP32
+def read_from_serial():
     try:
-        ser = serial.Serial(port, baudrate, timeout = timeout)
+        ser = serial.Serial(port = "COM3", baudrate = 9600, timeout = 2)
         line = ser.readline().decode("utf-8").strip()
         ser.close()
         if line:
