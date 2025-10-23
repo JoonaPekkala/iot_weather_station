@@ -8,7 +8,7 @@ from datetime import datetime
 # Read the DHT22 sensor data from ESP32
 def read_from_serial():
     try:
-        ser = serial.Serial(port = "COM4", baudrate = 9600, timeout = 2)    # Open serial port
+        ser = serial.Serial(port = "COM4", baudrate = 9600, timeout = 2)    # Open serial port for data
         line = ser.readline().decode("utf-8").strip()
         ser.close()
         if line:
