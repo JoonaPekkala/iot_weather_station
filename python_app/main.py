@@ -21,7 +21,7 @@ def read_from_serial():
     return None, None
 
 # Write the data to csv file and print to terminal
-def write_to_csv(filename = "data.csv", duration = 86400, interval = 60):     # Duration for total logging in seconds and interval between measurement in seconds (24hours for every 1 minute)
+def write_to_csv(filename = "data.csv", duration = 28800, interval = 60):     # Duration for total logging in seconds and interval between measurement in seconds (8hours for every 1 minute)
     file_exists = os.path.exists(filename)                                    # Check if CSV already exists
 
     with open(filename, "a", newline = "") as file:
