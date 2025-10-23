@@ -91,3 +91,12 @@ Oulu, Finland
 ```text
 pyserial
 matplotlib
+```
+
+---
+
+## Example of the data
+
+![Graph of Temperature and Humidity over Time](/graph.png)
+
+---
