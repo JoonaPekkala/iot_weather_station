@@ -1,25 +1,30 @@
+# Import libraries
 import matplotlib.pyplot as plt
 import csv
 from datetime import datetime
 
+# Read the data in .csv file
 def read_from_csv(filename = "data.csv"):
-    timestamps, temps, hums = [], [], []
+    timestamps, temps, hums = [], [], []    # Create empty lists for the data
 
     with open(filename) as file:
         reader = csv.reader(file)
-        next(reader)                  # Skip header line
-        for timestamp, temp, hum in reader:
+        next(reader)                    # Skip header line
+        for row in reader:
+            if len(row) < 3:            # Skip empty or imcomplete rows
+                continue
+            timestamp, temp, hum = row
             try:
-                timestamps.append(datetime.fromisoformat(timestamp))
+                timestamps.append(datetime.fromisoformat(timestamp))    # Append in lists
                 temps.append(float(temp))
                 hums.append(float(hum))
-            except ValueError:
-                # Skip malformed lines if any
+            except ValueError:                      # Skip malformed lines if any
                 continue
 
     return timestamps, temps, hums
 
 
+# Plot the data using matplotlib
 def plot_data(filename = "data.csv"):
     timestamps, temps, hums = read_from_csv(filename)
 
@@ -31,7 +36,7 @@ def plot_data(filename = "data.csv"):
     plt.title("Temperature and Humidity over Time")
     plt.legend()
     plt.grid(True, linestyle="--", alpha=0.6)
-    plt.gcf().autofmt_xdate()  # Tilt timestamp labels for readability
+    plt.gcf().autofmt_xdate()                   # Tilt timestamp labels for readability
     plt.tight_layout()
     plt.show()
 
