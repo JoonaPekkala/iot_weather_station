@@ -14,19 +14,23 @@ def read_from_serial():
         if line:
             temp, hum = map(float, line.split(","))
             return temp, hum
+        
     except Exception as e:
         print(f"Serial read error: {e}")
+
     return None, None
 
 # Write the data to csv file and print to terminal
-def write_to_csv(filename = "data.csv", duration = 10, interval = 1):     # Duration for total logging in seconds and interval between measurement in seconds
-    file_exists = os.path.exists(filename)                                # Check if CSV already exists
+def write_to_csv(filename = "data.csv", duration = 86400, interval = 60):     # Duration for total logging in seconds and interval between measurement in seconds (24hours for every 1 minute)
+    file_exists = os.path.exists(filename)                                    # Check if CSV already exists
+
     with open(filename, "a", newline = "") as file:
         writer = csv.writer(file)
         if not file_exists:
             writer.writerow(["timestamp", "temp_C", "hum_%"])           # Create the first line in csv if the file has not been created yet
         print("Timestamp: Temp (C), Hum (%)")                           # Terminal print
         start_time = time.time()
+
         try:
             while time.time() - start_time < duration:                  # While loop to measure data for a wanted time
                 timestamp = datetime.now().isoformat()                  # Timestamp for data

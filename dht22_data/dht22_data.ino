@@ -23,5 +23,5 @@ void loop() {
   Serial.print(","); 
   Serial.println(hum);
 
-  delay(1000);                        // Wait 2 seconds
+  delay(1000);                        // Wait 1 seconds
 }
